@@ -11,12 +11,12 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener {
 
-    ArrayAdapter<String> name;
-    ArrayAdapter<String> number;
+    ArrayAdapter<String> contacts;
+
 
     EditText editText;
     EditText editText2;
-    ListView textView;
+    ListView listView;
     Button button;
 
     @Override
@@ -26,14 +26,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         editText = (EditText) findViewById(R.id.editText);
         editText2 = (EditText) findViewById(R.id.editText2);
-        textView = (ListView) findViewById(R.id.textView);
+        listView = (ListView) findViewById(R.id.listView);
         button = (Button) findViewById(R.id.button);
 
-        name = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        number = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        contacts = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+
 
         button.setOnClickListener(this);
-        textView.setOnItemLongClickListener(this);
+        listView.setOnItemLongClickListener(this);
+        listView.setAdapter(contacts);
 
     }
 
@@ -41,13 +42,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         String contactName = editText.getText().toString();
         String contactNumber = editText2.getText().toString();
-        name.add(contactName);
-        number.add(contactNumber);
+        contacts.add(contactName + " "+"(" +  contactNumber + ")");
+        editText.setText("");
+        editText2.setText("");
+
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        return false;
+        String contact = contacts.getItem(position);
+        contacts.remove(contact);
+        return true;
     }
 }
 
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Click the two text fields and set layout:width to 0 and layout:weight to 1.+
 
-        Create variables for each of the controls in MainActivity.
+        Create variables for each of the controls in MainActivity.+
 
         In onCreate, use findViewById to connect the variables to their respective views.
 
