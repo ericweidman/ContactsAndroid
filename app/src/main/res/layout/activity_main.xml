@@ -38,14 +38,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
                 android:layout_weight="1"
-                android:text="Name" />
+                android:hint="Name" />
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText2"
                 android:layout_weight="1"
-                android:text="Phone #" />
+                android:hint="Phone #" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
